@@ -22,11 +22,10 @@ const compat = new FlatCompat({
 
 const config = [
     { ignores: [".next", "node_modules", "eslint.config.mjs"] },
-    ...compat.extends("next/core-web-vitals", "next/typescript"),
     pluginJs.configs.recommended,
     ...tseslint.configs.strictTypeChecked,
     ...tseslint.configs.stylisticTypeChecked,
-    pluginReact.configs.flat.recommended,
+    ...compat.extends("next/core-web-vitals", "next/typescript"),
     {
         files: ["**/*.{ts,tsx}"],
         languageOptions: {
@@ -37,12 +36,11 @@ const config = [
             },
         },
         plugins: {
-            react: pluginReact,
-            prettier: prettier,
-            "react-hooks": reactHooks,
             "@typescript-eslint": tsPlugin,
             "@stylistic": stylistic,
             "@next/next": nextPlugin,
+            "react-hooks": reactHooks,
+            prettier: prettier,
         },
         rules: {
             ...pluginJs.configs.recommended.rules,
