@@ -45,12 +45,6 @@ jobs:
             - name: Check code formatting
               run: pnpm format:check
 
-            - name: Lint
-              run: pnpm lint
-
-            - name: Type check
-              run: pnpm typecheck
-
             - name: Create empty database file for build
               run: |
                   mkdir -p .data
@@ -60,6 +54,12 @@ jobs:
               run: |
                   echo "DATABASE_URL=file:.data/sqlite.db" > .env.local
                   echo "OPENAI_API_KEY=dummy-key-for-ci" >> .env.local
+
+            - name: Lint
+              run: pnpm lint
+
+            - name: Type check
+              run: pnpm typecheck
 
             - name: Build
               run: pnpm build
